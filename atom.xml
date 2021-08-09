@@ -3,11 +3,11 @@
   <title>Hyasea</title>
   
   <subtitle>hyasea</subtitle>
-  <link href="https://zyon16.github.io/atom.xml" rel="self"/>
+  <link href="https://zyon16.github.io/self_blog/atom.xml" rel="self"/>
   
-  <link href="https://zyon16.github.io/"/>
+  <link href="https://zyon16.github.io/self_blog/"/>
   <updated>2021-08-09T16:41:40.113Z</updated>
-  <id>https://zyon16.github.io/</id>
+  <id>https://zyon16.github.io/self_blog/</id>
   
   <author>
     <name>xXx</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Docker入门</title>
-    <link href="https://zyon16.github.io/article/cks4w8mfi00006pqvc1da3s75/"/>
-    <id>https://zyon16.github.io/article/cks4w8mfi00006pqvc1da3s75/</id>
+    <link href="https://zyon16.github.io/self_blog/article/cks4wudpw00007oqvdf6l43l0/"/>
+    <id>https://zyon16.github.io/self_blog/article/cks4wudpw00007oqvdf6l43l0/</id>
     <published>2021-08-09T08:12:00.000Z</published>
     <updated>2021-08-09T16:41:40.113Z</updated>
     
@@ -31,17 +31,17 @@
     
     
     
-    <category term="article" scheme="https://zyon16.github.io/categories/article/"/>
+    <category term="article" scheme="https://zyon16.github.io/self_blog/categories/article/"/>
     
     
-    <category term="Docker" scheme="https://zyon16.github.io/tags/Docker/"/>
+    <category term="Docker" scheme="https://zyon16.github.io/self_blog/tags/Docker/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://zyon16.github.io/uncategorized/cks4w8mfk00016pqvfqsn6m3j/"/>
-    <id>https://zyon16.github.io/uncategorized/cks4w8mfk00016pqvfqsn6m3j/</id>
+    <link href="https://zyon16.github.io/self_blog/uncategorized/cks4wudpy00017oqvfy1zguq4/"/>
+    <id>https://zyon16.github.io/self_blog/uncategorized/cks4wudpy00017oqvfy1zguq4/</id>
     <published>2021-08-08T15:08:57.157Z</published>
     <updated>2021-08-08T15:08:57.157Z</updated>
     
