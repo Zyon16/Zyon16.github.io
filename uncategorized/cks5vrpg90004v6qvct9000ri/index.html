@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>记录一次使用Docker部署Hexo - Hyasea</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+<link rel="stylesheet" href="/css/waline.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+ 
+  
+
+  
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hyasea" type="application/atom+xml">
+</head>
+    <body data-color-scheme="auto">
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">首页</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">文章</a>
+            
+            
+            
+            <a class="nav-item" href="/about">关于</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        <article class="post">
+    <div class="meta">
+        
+        <div class="date" id="date">
+            
+            
+            
+            
+            
+            
+            
+            
+            <span>August</span>
+            
+            
+            
+            
+            
+            <span>10,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title">记录一次使用Docker部署Hexo</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="记录一次使用Docker部署Hexo"><a href="#记录一次使用Docker部署Hexo" class="headerlink" title="记录一次使用Docker部署Hexo"></a>记录一次使用Docker部署Hexo</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于对Node并不熟悉，尚处于初学阶段，因此为熟悉刚学习的Docker以及避免造成本地环境的混乱，将借助Docker来部署Hexo，最后再移到Gitee Page上。</p>
+<h2 id="使用NPM安装Hexo"><a href="#使用NPM安装Hexo" class="headerlink" title="使用NPM安装Hexo"></a>使用NPM安装Hexo</h2><p><em>在开始之前，建议先自行百度Docker换源</em></p>
+<p>首先拉取 Node 镜像（其实启动镜像实例时会自动拉取）</p>
+<p><code>docker image pull node</code></p>
+<p>拉取成功后启动</p>
+<p><code>docker container run -p 4000:4000 -it node /bin/bash</code></p>
+<p>这里将容器4000端口与本地的4000端口进行了绑定</p>
+<p>随后便可以开始下载Hexo，下载之前，照例先给NPM换源（淘宝源）：</p>
+<p><code>npm config set registry https://registry.npm.taobao.org</code></p>
+<p>之后便可以用Hexo官网的指令进行部署：</p>
+<p><code>npm install hexo-cli -g</code></p>
+<h2 id="Hexo初始化配置"><a href="#Hexo初始化配置" class="headerlink" title="Hexo初始化配置"></a>Hexo初始化配置</h2><p>Hexo安装完成后便可以按照<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/setup">官方文档</a>继续。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init blog		<span class="comment"># 创建blog文件</span></span><br></pre></td></tr></table></figure>
+
+<p>报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INFO  Cloning hexo-starter https://github.com/hexojs/hexo-starter.git</span><br><span class="line">fatal: unable to access <span class="string">&#x27;https://github.com/hexojs/hexo-starter.git/&#x27;</span>: gnutls_handshake() failed: The TLS connection was non-properly terminated.</span><br><span class="line">WARN  git <span class="built_in">clone</span> failed. Copying data instead</span><br></pre></td></tr></table></figure>
+
+<p>尝试曲线救国：</p>
+<p>在gitee上找到了一个仓库，尝试拉取并安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://gitee.com/jiabintd/hexo-starter hexo-starter</span><br><span class="line">$ <span class="built_in">cd</span> hexo-starter</span><br><span class="line">$ npm isntall</span><br></pre></td></tr></table></figure>
+
+<p>再次进入<code>blog</code>尝试安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> blog</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+
+<p>随后便可以使用以下指令启动Hexo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>现在先暂时使用 <kbd>Ctrl</kbd>+<kbd>C</kbd>关闭Hexo来进行博客站配置</p>
+<p>首先是<code>_config.yml</code>文件，坑爹的来了，容器中常用的nano、vim甚至vi都没有，换源都难，只能先忍着速度来一波<code>apt update</code>了，然后建议先安装nano（小，快）进行换源后再考虑vim</p>
+<p>根据官方文档简单配置下<code>_config.yml</code>即可，接下来便是下载一个好看的主题，这里选用的是<a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">zhwangart/hexo-theme-ocean</a>，该主题有完整的<a target="_blank" rel="noopener" href="https://zhwangart.com/2018/11/30/Ocean/">中文文档</a></p>
+<p>主题安装完毕后便是再根据主题文档来配置</p>
+<p>这里写一个踩坑记录，在配置文章链接时候，修改成了类似于 <code>:example/:title</code>的形式，导致点击文章时变成了下载而不是打开阅读，正确的写法应该要保持<code>/</code>结尾，即应该是<code>:example/:title/</code></p>
+<h2 id="使用Hexo-admin管理博客站"><a href="#使用Hexo-admin管理博客站" class="headerlink" title="使用Hexo-admin管理博客站"></a>使用Hexo-admin管理博客站</h2><p>首先是安装：</p>
+<p><code>npm install hexo-admin --save</code></p>
+<p>随后便可以进入<code>https://xxxx/admin</code>进入后台进行图形化配置</p>
+<p>记得根据提示去<code>_config.yml</code>设置密码</p>
+<h2 id="部署Hexo"><a href="#部署Hexo" class="headerlink" title="部署Hexo"></a>部署Hexo</h2><p>本来是想部署到Gitee的，毕竟国内的，访问的快，然鹅最近不让用了，那就只能部署到Github Pages了</p>
+<p>首先要做的是git的初始化（因为我是容器环境中）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;你的用户名&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;你的邮箱地址&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><em>这里是对全局设置，你可以对单一仓库去掉<code>--global</code>参数来针对性设置</em></p>
+<p>之后安装部署工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>然后需要在配置文件中修改以下内容：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="comment"># github仓库地址</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="comment"># 提交分支，注意GitHub已经将默认主分支设定为main，但最好不要提交到main或master上</span></span><br><span class="line">  <span class="attr">message:</span> <span class="comment"># 提交信息，可以不管</span></span><br></pre></td></tr></table></figure>
+
+<p>这里有一点坑，请务必按照以下步骤来</p>
+<p>先清理一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean </span><br></pre></td></tr></table></figure>
+
+<p>然后便可以使用以下命令进行部署</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
+
+<p>该指令是让Hexo先编译静态文件(<code>g</code>)，然后部署到远程仓库(<code>-d</code>)</p>
+<p>如果漏了编译这一步而直接部署，可能会出现本地看着正常，而部署后样式失效的问题</p>
+<p>过程中会需要你的GitHub账号和密码，输入即可</p>
+<p>在看到输出成功信息后便可以访问了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Deploy <span class="keyword">done</span>: git</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义域名解析到Pages"><a href="#自定义域名解析到Pages" class="headerlink" title="自定义域名解析到Pages"></a>自定义域名解析到Pages</h2><p>在根目录下添加一个名为 <code>CNAME</code> 的文件，填入域名，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">example.com</span><br></pre></td></tr></table></figure>
+
+<p>这一步可以直接在Github Pages页面设置，效果一样</p>
+<p>然后使用 ping 命令找出存放博客站的主机ip，直接ping 博客站的地址即可，如<code>xxx.github,io</code></p>
+<p>随后需要在DNS解析里添加2个记录，分别是：</p>
+<ul>
+<li>类型CNAME，记录www，值为<code>xxx.github.io</code></li>
+<li>类型A，记录@，值为刚刚拿到的IP</li>
+</ul>
+<p>这样等待大概10分钟左右便可以使用自定义域名去访问Hexo</p>
+
+    </div>
+
+    <div class="about">
+        <h1>About this Post</h1>
+        <p>This post is written by xXx, licensed under <a
+                target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh">CC BY-NC 4.0</a>.</p>
+    </div>
+
+    
+        
+    
+</article>
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h4 class="title">导航</h4>
+                
+                <a href="/" class="item" target="_blank">首页</a>
+                
+                <a href="/archives" class="item" target="_blank">文章</a>
+                
+                <a href="/about" class="item" target="_blank">关于</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">联系方式</h4>
+                
+                <a href="mailto:1340554713@qq.com" class="item" target="_blank">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2021 xXx<br >Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></span>
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+        
+<script src="/js/main.js"></script>
+
+        
+    </body>
+</html>

@@ -126,7 +126,7 @@
 </ul>
 <h2 id="Docker结构"><a href="#Docker结构" class="headerlink" title="Docker结构"></a>Docker结构</h2><p><img src="https://mrhelloworld.com/resources/articles/docker/7868545-060cc40d94102469.jpg"></p>
 <p>通过上图可以得知，<code>Docker</code> 在运行时分为 <code>Docker 引擎（服务端守护进程）</code> 和 <code>客户端工具</code>，即它是是服务器—-客户端架构，我们日常使用各种 <code>docker 命令</code>，其实就是在使用 <code>客户端工具</code> 与 <code>Docker 引擎</code> 进行交互。</p>
-<h2 id="Docker名次及概念解释"><a href="#Docker名次及概念解释" class="headerlink" title="Docker名次及概念解释"></a>Docker名次及概念解释</h2><h3 id="Client-客户端"><a href="#Client-客户端" class="headerlink" title="Client 客户端"></a>Client 客户端</h3><p>Docker 是一个客户端-服务器（C/S）架构程序。Docker 客户端只需要向 Docker 服务器或者守护进程发出请求，服务器或者守护进程将完成所有工作并返回结果。Docker 提供了一个命令行工具 Docker 以及一整套 RESTful API。<strong>你可以在同一台宿主机上运行 Docker 守护进程和客户端，也可以从本地的 Docker 客户端连接到运行在另一台宿主机上的远程 Docker 守护进程。</strong></p>
+<h2 id="Docker名词及概念解释"><a href="#Docker名词及概念解释" class="headerlink" title="Docker名词及概念解释"></a>Docker名词及概念解释</h2><h3 id="Client-客户端"><a href="#Client-客户端" class="headerlink" title="Client 客户端"></a>Client 客户端</h3><p>Docker 是一个客户端-服务器（C/S）架构程序。Docker 客户端只需要向 Docker 服务器或者守护进程发出请求，服务器或者守护进程将完成所有工作并返回结果。Docker 提供了一个命令行工具 Docker 以及一整套 RESTful API。<strong>你可以在同一台宿主机上运行 Docker 守护进程和客户端，也可以从本地的 Docker 客户端连接到运行在另一台宿主机上的远程 Docker 守护进程。</strong></p>
 <h3 id="Host-主机（Docker引擎）"><a href="#Host-主机（Docker引擎）" class="headerlink" title="Host 主机（Docker引擎）"></a>Host 主机（Docker引擎）</h3><p>一个物理或者虚拟的机器用于执行 Docker 守护进程和容器。</p>
 <h3 id="Image-镜像"><a href="#Image-镜像" class="headerlink" title="Image 镜像"></a>Image 镜像</h3><p>简单的理解，Docker 镜像就是一个 Linux 的文件系统（Root FileSystem），这个文件系统里面包含可以运行在 Linux 内核的程序以及相应的数据。</p>
 <p>通过镜像启动一个容器，一个镜像就是一个可执行的包，其中包括运行应用程序所需要的所有内容：包含代码，运行时间，库，环境变量和配置文件等。</p>

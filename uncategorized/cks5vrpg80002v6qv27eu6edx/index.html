@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>记一次使用脚本帮助抢注ID - Hyasea</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+<link rel="stylesheet" href="/css/waline.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+ 
+  
+
+  
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hyasea" type="application/atom+xml">
+</head>
+    <body data-color-scheme="auto">
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">首页</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">文章</a>
+            
+            
+            
+            <a class="nav-item" href="/about">关于</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        <article class="post">
+    <div class="meta">
+        
+        <div class="date" id="date">
+            
+            
+            
+            
+            
+            
+            
+            
+            <span>August</span>
+            
+            
+            
+            
+            
+            <span>10,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title">记一次使用脚本帮助抢注ID</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="记一次使用脚本帮助抢注ID"><a href="#记一次使用脚本帮助抢注ID" class="headerlink" title="记一次使用脚本帮助抢注ID"></a>记一次使用脚本帮助抢注ID</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li><p>需求：根据这篇文章指出的网站和方法<a target="_blank" rel="noopener" href="https://blog.csdn.net/wade1203/article/details/99791423">收藏！全国计算机二级 Python 题库破解</a> 进行注册，发现ID都被抢注，只能通过脚本批量去试</p>
+</li>
+<li><p>API：<code>https://python123.io/api/v1/student/courses</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;code&quot;</span>:<span class="string">&quot;C989&quot;</span>,<span class="attr">&quot;passcode&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="attr">&quot;student_id&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="attr">&quot;name&quot;</span>:<span class="string">&quot;张军&quot;</span>,<span class="attr">&quot;email&quot;</span>:<span class="string">&quot;wertyuil1379@163.com&quot;</span>&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>根据当前浏览器中请求的 header 和根据API调用的数据构建data，由于个人用且只需要一个，因此header构建省略，直接通过浏览器访问后截取</p>
+<p>因为需要试的ID约有500个，避免请求过多和过于频繁，使用requests.session和time.sleep()</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> requests.api <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;https://python123.io/api/v1/student/courses&#x27;</span></span><br><span class="line">header=&#123;</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;application/json, text/plain, */*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Bearer 	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoid2VydHl1aWwxMzc5QDE2My5jb20iLCJuYW1lIjoieFh4IiwiaWQiOiI3MzQ1MjEiLCJvcGVuX2lkIjoid2VjaGF0Om94WjlSMGEwVTlnRWNyOVBpT3ZxYjZDQjQzZjAiLCJyb2xlcyI6WyJzdHVkZW50Il0sImxhc3RfbG9naW4iOjE2MjI5ODE1Njc0MzN9LCJpYXQiOjE2MjI5ODE4NzQsImV4cCI6MTYyNDI3Nzg3NH0.6RepjlBRajrpGxWhGXckO5MiTAChVBE4DVFPOc0EF7M&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Accept-Language&#x27;</span>: <span class="string">&#x27;zh-cn&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Accept-Encoding&#x27;</span>: <span class="string">&#x27;gzip, deflate, br&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Host&#x27;</span>: <span class="string">&#x27;python123.io&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Origin&#x27;</span>: <span class="string">&#x27;https://python123.io&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Connection&#x27;</span>: <span class="string">&#x27;keep-alive&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Referer&#x27;</span>: <span class="string">&#x27;https://python123.io/student/courses&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Content-Length&#x27;</span>: <span class="string">&#x27;95&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Cookie&#x27;</span>: <span class="string">&#x27;io=y1vqJHgFkMs0e8TpB24-; Hm_lpvt_6f63cfeea8c9a84040e2c4389f01bb91=1622981878; Hm_lvt_6f63cfeea8c9a84040e2c4389f01bb91=1622981492,1622981556; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoid2VydHl1aWwxMzc5QDE2My5jb20iLCJuYW1lIjoieFh4IiwiaWQiOiI3MzQ1MjEiLCJvcGVuX2lkIjoid2VjaGF0Om94WjlSMGEwVTlnRWNyOVBpT3ZxYjZDQjQzZjAiLCJyb2xlcyI6WyJzdHVkZW50Il0sImxhc3RfbG9naW4iOjE2MjI5ODE1Njc0MzN9LCJpYXQiOjE2MjI5ODE4NzQsImV4cCI6MTYyNDI3Nzg3NH0.6RepjlBRajrpGxWhGXckO5MiTAChVBE4DVFPOc0EF7M; __gads=ID=a7bdd753e07cb1f6-221fdfe43ec90056:T=1622981492:RT=1622981492:S=ALNI_MZXaKIvOdrdV163NPPNyAU6EzK86g&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line">s = requests.session()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">id</span> <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">500</span>):</span><br><span class="line">    datas = &#123;</span><br><span class="line">        <span class="string">&#x27;code&#x27;</span>:<span class="string">&#x27;C989&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;passcode&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;student_id&#x27;</span>: <span class="built_in">str</span>(<span class="built_in">id</span>),</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;张军&#x27;</span>,</span><br><span class="line">        <span class="string">&quot;email&quot;</span>:<span class="string">&quot;1340554713@qq.com&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    res = s.post(url=url,headers=header,data=json.dumps(datas))</span><br><span class="line"></span><br><span class="line">    res_json = json.loads(res.text)</span><br><span class="line">    <span class="keyword">if</span> res_json[<span class="string">&#x27;code&#x27;</span>] != <span class="number">400</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;FOUND IT !&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">str</span>(<span class="built_in">id</span>)))</span><br><span class="line">        <span class="built_in">print</span>(res_json[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;message&#x27;</span>])</span><br><span class="line"></span><br><span class="line">        exit(<span class="string">&#x27;STOP&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;id:&#123;a&#125;————&#123;b&#125;&#x27;</span>.<span class="built_in">format</span>(a=<span class="built_in">str</span>(<span class="built_in">id</span>),b=res_json[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;message&#x27;</span>]))</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        res.keep_alive = <span class="literal">False</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">id</span>:<span class="number">495</span>————当前学号已被绑定</span><br><span class="line"><span class="built_in">id</span>:<span class="number">496</span>————当前学号已被绑定</span><br><span class="line"><span class="built_in">id</span>:<span class="number">497</span>————当前学号已被绑定</span><br><span class="line"><span class="built_in">id</span>:<span class="number">498</span>————当前学号已被绑定</span><br><span class="line"><span class="built_in">id</span>:<span class="number">499</span>————当前学号已被绑定</span><br></pre></td></tr></table></figure>
+
+<p>一个能用的都没有。。。</p>
+<p>那篇文章说只有500左右个学号，然而实践证明远不止这点（应该是后加的）</p>
+<p>于是将范围拓宽到1000，最终爬到了学号882</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FOUND IT !<span class="number">882</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/Users/zyon/Desktop/test.py&quot;</span>, line <span class="number">38</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="built_in">print</span>(res_json[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;message&#x27;</span>])</span><br><span class="line">KeyError: <span class="string">&#x27;message&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>因为不知道成功后返回的JSON，因此之前根据错误返回猜的代码有点错误，不过不用，目的已经达成。</p>
+
+    </div>
+
+    <div class="about">
+        <h1>About this Post</h1>
+        <p>This post is written by xXx, licensed under <a
+                target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh">CC BY-NC 4.0</a>.</p>
+    </div>
+
+    
+        
+    
+</article>
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h4 class="title">导航</h4>
+                
+                <a href="/" class="item" target="_blank">首页</a>
+                
+                <a href="/archives" class="item" target="_blank">文章</a>
+                
+                <a href="/about" class="item" target="_blank">关于</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">联系方式</h4>
+                
+                <a href="mailto:1340554713@qq.com" class="item" target="_blank">Email</a>
+                
+            </div>
+            
+        </div>
+        <span>&copy; 2021 xXx<br >Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></span>
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+        
+<script src="/js/main.js"></script>
+
+        
+    </body>
+</html>
